@@ -1,5 +1,5 @@
 <h1>What Activies would you like to do today?</h1>
-<form method="POST" action="/experiences">
+<form method="POST" action="/activities">
   <div class="form-group">
     <label for="title">Title </label>
     <input type="text" class="form-control" id="title" name="title" required>
@@ -21,10 +21,10 @@
     <% end %>
   </div>
   <div class="form-group">
-    <p><u>or create a new category:</u></p>
+    <p><u>or create new tags:</u></p>
     <label for="tagsname">Lesson Type:</label>
     <input type="text" class="form-control" id="tagsname" name="tags[name]">
   </div>
   <br><br>
-  <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Add To Your Bucket List</button>
+  <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Sneakily Add New Activies</button>
 </form>
