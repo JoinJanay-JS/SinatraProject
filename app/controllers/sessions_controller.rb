@@ -6,21 +6,18 @@ class SessionsController < ApplicationsController
       end
 
     post '/login' do 
-        
-        
       if params["username"].empty? || params["password"].empty?
         @error = "Not so fast, Sneaky Teacher!"
         erb :'users/login'
-
-        user= User.find(username: params["username"], password: params["password"] ) 
-      elsif  
-        User.find_by(username: user.username) 
-        @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
-      else   
-        user.save 
+      else 
+       if user= User.find_by(username: params["username"], password: params["password"] ) 
         session[:user_id] = user.id
-        redirect '/users'
-      end 
-    end 
+        redirect '/students'
 
+       else 
+        @error = "No Sneaky Teacher Account Found"
+       end 
+    end 
 end 
+end 
+
