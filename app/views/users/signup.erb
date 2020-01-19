@@ -3,6 +3,7 @@
     <div class="text-center">
       <h1>Welcome Sneaky Teachers</h1>
         <h6>Please create an account: <a href='/login'>(Already have an account? Log In Here)</a></h6>
+          <p><%= @error %></p>
           <form method="POST" action='/signup'>
             <label><strong>Username: *</strong></label><br>
             <input type="text" name="name" required><br>

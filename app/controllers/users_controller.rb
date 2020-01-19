@@ -6,24 +6,22 @@ class UsersController < ApplicationController
     end
   
     post '/signup' do
-      user_info = { :username => params["username"],
-                    :email => params["email"],
-                    :password => params["password"] }
+      user= User.new(params)
+      if user.username.empty? || user.password.empty?
+        @error = "Not so fast, Sneaky Teacher!"
+        erb :'user/signup'
+      elsif  
+        User.find_by(username: user.username) 
+        @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
+      else   
+        user.save 
+        session[:user_id] = user.id
+        redirect '/users'
+      end 
+    end 
+  end 
+
   
-      is_empty?(user_info, 'signup')
-      flash[:account_taken] = "Not so fast, Sneaky Teacher!"
-      redirect to '/signup'
-  
-      if User.find_by(:email => user_info[:email])
-        flash[:account_taken] = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue."
-        redirect to '/signup'
-      end
-  
-     if new_user = User.create(user_info)
-      session[:user_id] = new_user.id
-  
-      redirect to '/students'
-    end
   
     get '/login' do
       redirect to '/users' if is_logged_in?
@@ -31,30 +29,8 @@ class UsersController < ApplicationController
       erb :'users/show'
     end
   
-    post '/login' do
-      user_info = {
-        :email => params["email"],
-        :password => params["password"]
-      }
   
-      is_empty?(user_info, 'login')
-      redirect to '/login'
-  
-      user = User.find_by(:email => user_info[:email])
-  
-      if user && user.authenticate(user_info[:password])
-        session[:user_id] = user.id
-        redirect to '/users'
-      else
-        if user
-          flash[:password] = "Your password is incorrect"
-          redirect to '/login'
-        else
-          flash[:no_account] = "Uh oh! Not so fast, you're not a Sneaky Teacher quite yet! Please enter a different email or sign up for an account."
-          redirect to '/login'
-        end
-      end
-    end
+   
   
     get '/logout' do
       if is_logged_in?
@@ -65,4 +41,6 @@ class UsersController < ApplicationController
       end
     end
   end 
-  end 
+end 
+end 
+   
