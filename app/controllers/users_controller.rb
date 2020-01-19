@@ -18,7 +18,8 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         redirect '/users'
       end 
-    end 
+      end 
+    end
   end
 
     get '/logout' do
@@ -30,5 +31,3 @@ class UsersController < ApplicationController
       end
     end 
   end 
-  
-end 
