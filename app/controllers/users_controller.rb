@@ -20,7 +20,6 @@ class UsersController < ApplicationController
       end 
       end 
     end
-  end
 
     get '/logout' do
       if is_logged_in?
@@ -29,5 +28,4 @@ class UsersController < ApplicationController
       else
         redirect to '/'
       end
-    end 
-  end 
+    end  
