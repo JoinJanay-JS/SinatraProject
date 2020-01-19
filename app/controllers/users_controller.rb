@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     end
   
     get '/login' do
-      redirect to '/students' if is_logged_in?
+      redirect to '/users' if is_logged_in?
   
       erb :'users/login'
     end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   
       if user && user.authenticate(user_info[:password])
         session[:user_id] = user.id
-        redirect to '/students'
+        redirect to '/users'
       else
         if user
           flash[:password] = "Your password is incorrect"
