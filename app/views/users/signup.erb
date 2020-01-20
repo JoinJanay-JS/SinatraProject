@@ -6,11 +6,11 @@
           <p><%= @error %></p>
           <form method="POST" action='/signup'>
             <label><strong>Username: *</strong></label><br>
-            <input type="text" username="username" required><br>
+            <input type="text" name="username" required><br>
             <label><strong>Email: *</strong></label><br>
-            <input type="text" email="email" required><br>
+            <input type="text" name="email" required><br>
             <label><strong>Create a Password: *</strong></label><br>
-            <input type="password" password="password" required><br>
+            <input type="password" name="password" required><br>
             <br>
             <input class="btn btn-info" type="submit" value="Create my Account">
           </form>

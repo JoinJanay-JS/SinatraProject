@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     get '/signup' do
-      redirect to '/students' if is_logged_in?
+      redirect to '/users' if is_logged_in?
       #go to users page and allow users to select student
       erb :"users/signup"
     end
