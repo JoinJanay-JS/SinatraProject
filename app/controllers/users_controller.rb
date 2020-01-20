@@ -6,12 +6,12 @@ class UsersController < ApplicationController
     end
   
     post '/signup' do
-      user= Users.new(params)
+      user= User.new(params)
       if user.username.empty? || user.password.empty?
         @error = "Not so fast, Sneaky Teacher!"
         erb :'user/signup'
       elsif  
-        Users.find_by(username: user.username) 
+        User.find_by(username: user.username) 
         @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
       else   
         user.save 
