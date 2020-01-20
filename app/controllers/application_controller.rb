@@ -33,6 +33,11 @@ class ApplicationController < Sinatra::Base
       end
     end
 
+    get '/action_page.php' do
+      "Thank you for the entry, Sneaky Teacher!"
+    end
+
+
   end
 
 
