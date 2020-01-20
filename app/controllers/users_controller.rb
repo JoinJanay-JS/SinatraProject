@@ -21,6 +21,10 @@ class UsersController < ApplicationController
       end 
       end 
 
+      def create_user do 
+          Students.create(name: params["name"], age: params["age"], image: params["image"], activities: params["activities"])
+      end
+      
     get '/logout' do
       if is_logged_in?
         session.clear

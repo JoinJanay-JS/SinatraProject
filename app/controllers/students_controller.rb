@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
         redirect to '/login'
       end
       @students = Students.all.sort_by{|s| s.name}
-      erb :"students/landingpage"
+      erb :"students/show"
     end
   
     get '/students/:id' do
