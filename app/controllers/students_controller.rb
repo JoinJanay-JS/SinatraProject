@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
     before '/students/*' do
       if !is_logged_in?
-        flash[:login] = "You need to be logged in to performance that action"
+        flash[:login] = "You need to be logged in to perform that action"
         redirect to '/login'
       end
     end
