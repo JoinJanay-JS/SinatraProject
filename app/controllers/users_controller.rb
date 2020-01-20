@@ -21,7 +21,29 @@ class UsersController < ApplicationController
       end 
       end 
 
-      
+    get '/create/new' do 
+      erb :'/users/student'
+    end 
+
+    post '/create' do 
+      student = Students.new(name: params["name"], age: params["age"])
+      if !student.name.empty? && student.age.empty?
+        student.save
+      else 
+        @error = "Please create a new Student by adding a name and activity"
+        erb :'/user/student'
+    end 
+
+    get '/student' do 
+      @students = Students.all.reverse
+      erb :'/users/index'
+    end 
+
+    get '/student/:id' do 
+      @student = Students.find(params[id])
+      erb :'/users/show'
+    end 
+
     get '/logout' do
       if is_logged_in?
         session.clear
@@ -31,3 +53,4 @@ class UsersController < ApplicationController
       end
     end
   end 
+end 

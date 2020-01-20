@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     if is_logged_in?
-      redirect to '/users'
+      redirect to '/users/login'
     end
     erb :welcome
   end
