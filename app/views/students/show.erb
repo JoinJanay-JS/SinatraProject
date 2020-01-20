@@ -1,4 +1,19 @@
-<h1><%= @students.name %></h1>
+
 
 <h2><%=@student.activity %></h2>
 
+<body class="home-page-bkgd">
+  <div class="home-page-container">
+    <div class="text-center">
+    <h1>Add a new activity to <%= @students.name %></h1>
+        <h6>Pick an Activity <a href="/activities/id"><%= @activity.name %></a></h6>
+        <p>Want to add a new file?</p>
+        <p>Click on the "Choose File" button to upload a file:</p>
+
+        <form action="/action_page.php">
+        <input type="file" id="myFile" name="filename">
+        <input type="submit">
+        </form>
+    </div>
+  </div>
+</body>
