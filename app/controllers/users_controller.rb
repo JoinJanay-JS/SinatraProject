@@ -6,19 +6,25 @@ class UsersController < ApplicationController
     end
   
     post '/signup' do
-      user= User.new(params)
-      if user.username.empty? || user.password.empty?
+      user= Users.new(params)
+      if users.username.empty? || users.password.empty?
         @error = "Not so fast, Sneaky Teacher!"
         erb :'user/signup'
       elsif  
-        User.find_by(username: user.username) 
+        Users.find_by(username: user.username) 
         @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
       else   
-        user.save 
+        users.save 
         session[:user_id] = user.id
         redirect '/users'
       end 
       end 
+
+      new_user = User.create(user)
+      session[:user_id] = new_user.id
+  
+      redirect to '/experiences'
+    end
     end
 
     get '/logout' do
