@@ -1,7 +1,7 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-      <h1>Welcome Back <%= @user.username %></h1>
+      <h1>Welcome Back <%= "@user.username" %></h1>
         <h6>Please select a student: <a href='/student/<%=student/id %>%'></a></h6>
           <form method="POST" action='/students'>
             <label><strong>Student Name</strong></label><br>
