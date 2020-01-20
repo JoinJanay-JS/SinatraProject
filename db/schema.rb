@@ -13,4 +13,29 @@
 
 ActiveRecord::Schema.define(version: 20200117020133) do
 
+  create_table "activies", force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.string "supplies"
+    t.text   "instructions"
+    t.string "tags"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.integer "age"
+    t.string  "activities"
+    t.string  "image"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "username"
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
