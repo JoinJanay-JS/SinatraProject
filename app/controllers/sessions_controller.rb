@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
     get '/login' do
         redirect to '/users' if is_logged_in?
-        erb :'users/show'
+        erb :'users/index'
       end
 
     post '/login' do 
