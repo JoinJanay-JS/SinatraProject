@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     post '/login' do 
       if params["username"].empty? || params["password"].empty?
         @error = "Not so fast, Sneaky Teacher!"
-        erb :'users/login'
+        erb :'/login'
       else 
        if user= User.find_by(username: params["username"], password: params["password"] ) 
         session[:user_id] = user.id

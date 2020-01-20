@@ -33,10 +33,6 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    get '/login' do
-      redirect to 'users/login'
-    end
-
   end
 
 
