@@ -1,0 +1,17 @@
+<body class="home-page-bkgd">
+  <div class="home-page-container">
+    <div class="text-center">
+      <h1>Click your activity, <%=@student.id %></h1>
+        <h4><%= Activities.title%> <a href="<%= Activites.id %>%">Sign Up for one Here</a></h4>
+        <h5>Add a New Activity Here</h5>
+        <form method="POST" action="/activity">
+        <label><strong>Email: *</strong></label><br>
+        <input type="text" name="email" required><br>
+        <label><strong>Password: *</strong></label><br>
+        <input type="password" name="password"><br>
+        <br>
+        <input class="btn btn-info" type="submit" value="Log In">
+        </form>
+    </div>
+  </div>
+</body>
