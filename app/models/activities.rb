@@ -1,4 +1,4 @@
 class Activities < ActiveRecord::Base
-    has_many :tags
+    has_many :titles
     belongs_to :students
   end
