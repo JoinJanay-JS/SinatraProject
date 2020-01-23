@@ -21,6 +21,10 @@ class UsersController < ApplicationController
       end 
       end 
 
+get '/users/login' do 
+  erb :'/welcome'
+end 
+
     get '/create/new' do 
       erb :'/users/student'
     end 
@@ -43,6 +47,10 @@ class UsersController < ApplicationController
       @student = Students.find(params[id])
       erb :'/users/show'
     end 
+
+  get 'user/show' do 
+    erb :'users/show'
+  end 
 
     get '/logout' do
       if is_logged_in?
