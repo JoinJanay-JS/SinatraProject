@@ -20,11 +20,11 @@ class StudentsController < ApplicationController
       erb :'/students/index'
     end 
 
+    get '/student/:id' do 
+       @student = Students.find(params[id])
+      erb :'/students/show'
+   end 
 
-    get '/students/:id' do
-      @students = Students.find(params["id"])
-      erb :"students/show"
-    end
 
     get '/back' do
       if is_logged_in?

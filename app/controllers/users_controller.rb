@@ -22,35 +22,33 @@ class UsersController < ApplicationController
       end 
 
     get '/users/' do 
-      erb :'/welcome'
+      erb :'/students/login'
     end 
 
     post '/users/' do
-      
+      student = Students.new(name: params["name"], age: params["age"])
+      if !student.name.empty? && student.age.empty?
+        student.save
+      else 
+      new_student= Students.create(name: params["name"], age: params["age"], image: params["image"])
+        session[:student_id] = new_student.id   
+        student.save 
+        redirect '/students/show'
     end
-
-    get '/create/new' do 
-      erb :'/users/student'
-    end 
 
     post '/create' do 
       student = Students.new(name: params["name"], age: params["age"])
       if !student.name.empty? && student.age.empty?
         student.save
-      else 
+      elsif
         @error = "Please create a new Student by adding a name and activity"
-        erb :'/user/student'
+      else 
+        new_student= Students.create(name: params["name"], age: params["age"], image: params["image"])
+        session[:student_id] = new_student.id   
+        student.save 
+        redirect '/students/show'
     end 
 
-    get '/student' do 
-      @students = Students.all.reverse
-      erb :'/users/index'
-    end 
-
-    get '/student/:id' do 
-       @student = Students.find(params[id])
-      erb :'/students/'
-   end 
 
   get '/users/show' do 
     redirect to :'users/show'
