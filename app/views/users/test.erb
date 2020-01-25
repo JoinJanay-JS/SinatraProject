@@ -1,0 +1,29 @@
+<div class="jumbotron">
+  <h1 class="display-3"><%= @student.description %></h1>
+  <p class="lead"><strong>Students:</strong> <a href="/students/<%= @student.country.id %>"><%= @student.activities.name %></a></p>
+  <% if @student.user_id == @user.id %>
+    <p>Student Activities</p>
+    <a class="btn btn-info btn-sm" href="/students/<%= @student.id %>/edit" role="button">Edit student</a>
+  <% else %>
+    <p>From <%= @students.user.name %>'s Travel Bucket List</p>
+    <a class="btn btn-info btm-sm" href="/students/<%= @student.id %>/new_from_user" role="button">Add this to my List</a>
+  <% end %>
+<hr class="my-4">
+  <p>Categories</p>
+  <% @student.categories.each do |c| %>
+    <ul>
+      <li><a href="/categories/<%= c.id %>"><%= c.name %></a></li>
+    </ul>
+  <% end %>
+  <% if @students.user_id == @user.id %>
+      <form method="POST" action="/students/<%= @users.id %>/delete">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn btn-danger btn-sm">Delete Student</button>
+      </form>
+  <% end %>
+</div>
+<% if @student.user_id == @user.id %>
+  <div class="text-right"><a class="btn btn-success" style="margin: 20px" href="/students" role="button">< Select Your Student</a></div>
+<% else %>
+  <div class="text-right"><a class="btn btn-warning" style="margin: 20px" href="/students/users" role="button">< All Students </a></div>
+<% end %>

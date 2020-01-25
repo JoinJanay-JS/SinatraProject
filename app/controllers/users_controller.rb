@@ -43,13 +43,17 @@ end
       erb :'/users/index'
     end 
 
-    get '/student/:id' do 
-      @student = Students.find(params[id])
-      erb :'/users/show'
-    end 
+   # get '/student/:id' do 
+   #   @student = Students.find(params[id])
+   #   erb :'/students/show'
+   # end 
 
-  get 'user/show' do 
-    erb :'users/show'
+  get '/users/show' do 
+    redirect to :'users/show'
+  end 
+
+  post '/users/show' do 
+    erb :'/users/show'
   end 
 
     get '/logout' do
