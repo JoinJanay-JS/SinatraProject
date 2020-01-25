@@ -1,16 +1,23 @@
-<body class="home-page-bkgd">
-  <div class="home-page-container">
-    <div class="text-center">
-      <h1>Log In to your Account</h1>
-        <h6>Don't have an account yet? <a href="/signup">Sign Up Sneaky Teacher!</a></h6>
-        <form method="POST" action="/login">
-        <label><strong>Email: </strong></label><br>
-        <input type="text" name="email" required><br>
-        <label><strong>Password: </strong></label><br>
-        <input type="password" name="password"><br>
-        <br>
-        <input class="btn btn-info" type="submit" value="Log In">
-        </form>
-    </div>
+<h1>Create a New Student</h1>
+<form method="POST" action="/students">
+  <div class="form-group">
+    <label for="name">Name *</label>
+    <input type="text" class="form-control" id="name" name="name" required>
   </div>
-</body>
+  <div class="form-group">
+    <label for="age">Age *</label>
+    <input type="text" class="form-control" id="age" name="age" required>
+  </div>
+  <div class="form-group">
+  <strong><u>Image (Add an Image for your student Here... )</u></strong>:<br>
+    <% @students.each do |s| %>
+    <div class="form-group">
+      <form action="/action_page.php">
+        <input type="file" name="pic" accept="image/*">
+        <input type="submit">
+        <input action="/students/images" type="checkbox" name="image" value="<%=s.id%>">
+          <%=s.name%>
+    </div>
+    <% end %>
+  </div>
+</form>
