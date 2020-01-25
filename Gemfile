@@ -13,6 +13,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'sinatra-flash', '~> 0.3.0'
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'carrierwave'
 
 group :test do
   gem 'rspec'
