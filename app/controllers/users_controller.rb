@@ -21,6 +21,32 @@ class UsersController < ApplicationController
       end 
       end 
 
+      get '/login' do
+        redirect to '/students' if is_logged_in?
+    
+        erb :"users/logged_in"
+      end
+
+      post '/login' do
+        user_info = {
+          :email => params["email"],
+          :password => params["password"]
+        }
+    
+        is_empty?(user_info, 'login')
+    
+        user = Users.find_by(:email => user_info[:email])
+    
+        if user && user.authenticate(user_info[:password])
+          session[:user_id] = user.id
+          redirect to '/users/logged_in'
+        else
+          if user
+            flash[:password] = "Your password is incorrect"
+            redirect to '/login'
+        end
+      end
+
     get '/users/' do 
       erb :'/students/login'
     end 
@@ -67,5 +93,6 @@ class UsersController < ApplicationController
       end
     end
   end 
+end 
 end 
 end 
