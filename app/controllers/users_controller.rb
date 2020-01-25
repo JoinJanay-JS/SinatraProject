@@ -21,9 +21,13 @@ class UsersController < ApplicationController
       end 
       end 
 
-get '/users/login' do 
-  erb :'/welcome'
-end 
+    get '/users/' do 
+      erb :'/welcome'
+    end 
+
+    post '/users/' do
+      
+    end
 
     get '/create/new' do 
       erb :'/users/student'
@@ -43,17 +47,17 @@ end
       erb :'/users/index'
     end 
 
-   # get '/student/:id' do 
-   #   @student = Students.find(params[id])
-   #   erb :'/students/show'
-   # end 
+    get '/student/:id' do 
+       @student = Students.find(params[id])
+      erb :'/students/'
+   end 
 
   get '/users/show' do 
     redirect to :'users/show'
   end 
 
-  post '/users/show' do 
-    erb :'/users/show'
+  post '/users/login' do 
+    erb :'/users/test'
   end 
 
     get '/logout' do
