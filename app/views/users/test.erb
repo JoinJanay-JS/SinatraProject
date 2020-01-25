@@ -1,7 +1,7 @@
 <div class="jumbotron">
-  <h1 class="display-3"><%= @student.description %></h1>
-  <p class="lead"><strong>Students:</strong> <a href="/students/<%= @student.country.id %>"><%= @student.activities.name %></a></p>
-  <% if @student.user_id == @user.id %>
+  <h1 class="display-3"><%= @student.name %></h1>
+  <p class="lead"><strong>Students:</strong> <a href="/students/<%= @students.name.id %>"><%= @student.activities.title %></a></p>
+  <% if @students.student_id == @student.id %>
     <p>Student Activities</p>
     <a class="btn btn-info btn-sm" href="/students/<%= @student.id %>/edit" role="button">Edit student</a>
   <% else %>
@@ -9,10 +9,10 @@
     <a class="btn btn-info btm-sm" href="/students/<%= @student.id %>/new_from_user" role="button">Add this to my List</a>
   <% end %>
 <hr class="my-4">
-  <p>Categories</p>
-  <% @student.categories.each do |c| %>
+  <p>Activities</p>
+  <% @student.activities.each do |a| %>
     <ul>
-      <li><a href="/categories/<%= c.id %>"><%= c.name %></a></li>
+      <li><a href="/activities/<%= a.id %>"><%= a.name %></a></li>
     </ul>
   <% end %>
   <% if @students.user_id == @user.id %>
