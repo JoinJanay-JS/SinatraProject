@@ -19,8 +19,11 @@
       <div><a hef="/students">Students</a></div>
       </div>
     </div>
-    <div class="wrapper">
 
+    <div class="wrapper">
+        <% if flash[:message]%>
+          <%= flash[:message]%>
+        <% end %>
         <%= yield %>
 
       <footer class="branding">

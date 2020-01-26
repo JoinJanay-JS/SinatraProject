@@ -22,20 +22,17 @@ ActiveRecord::Schema.define(version: 20200117020133) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.integer "student_id"
+    t.integer "user_id"
+    t.integer "activity_id"
     t.string  "name"
     t.integer "age"
-    t.string  "activities"
     t.string  "image"
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
-    t.string   "student"
-    t.string   "student_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

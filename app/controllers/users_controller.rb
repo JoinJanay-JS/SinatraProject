@@ -7,92 +7,44 @@ class UsersController < ApplicationController
     end
   
     post '/signup' do
-      user = Users.new(username: params["username"], email: params["email"], password: params["password"])
-      if user.username.empty? || user.password.empty?
-        @error = "Not so fast, Sneaky Teacher!"
-        erb :'users/signup'
+      user = User.new(username: params["username"], email: params["email"], password: params["password"])
+      if user.save
+        session[:user_id] = user.id    
+        redirect '/users'  
       elsif  
-        Users.find_by(username: user.username) 
+        user = User.find_by(username: params["username"]) 
         @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
       else
-        new_user= Users.create(username: params["username"], email: params["email"], password: params["password"])
-        session[:user_id] = new_user.id   
-        user.save 
-        redirect '/users/logged_in'
+        @error = "Not so fast, Sneaky Teacher!"
+        erb :'users/signup'
+  
       end 
       end 
 
-      get '/login' do
-        @users = Users.new(username: params["username"], email: params["email"], password: params["password"])
-        redirect to '/students' if is_logged_in?
-    
-        erb :"users/logged_in"
-      end
 
-      post '/login' do
-        user_info = {
-          :email => params["email"],
-          :password => params["password"]
-        }
-    
-        is_empty?(user_info, 'login')
-    
-        if user && user.authenticate(user_info[:password])
-          session[:user_id] = user.id
-          redirect to '/users'
-        else
-          if user
-            flash[:password] = "Your password is incorrect"
-            redirect to '/login'
-        end
-      end
-
-    get '/users/' do 
-      erb :'/students/login'
-    end 
-
-    post '/users/' do
-      student = Students.new(name: params["name"], age: params["age"])
-      if !student.name.empty? && student.age.empty?
-        student.save
-      else 
-      new_student= Students.create(name: params["name"], age: params["age"], image: params["image"])
-        session[:student_id] = new_student.id   
-        student.save 
-        redirect '/students/show'
+    get '/users' do 
+      @user = User.find_by(id: params["id"])
+      @students = Student.all
+      erb :'/users/logged_in'
     end
 
-    post '/create' do 
-      student = Students.new(name: params["name"], age: params["age"])
-      if !student.name.empty? && student.age.empty?
-        student.save
-      elsif
-        @error = "Please create a new Student"
-      else 
-        new_student= Students.create(name: params["name"], age: params["age"], image: params["image"])
-        session[:student_id] = new_student.id   
-        student.save 
-        redirect '/students/show'
-    end 
+    #post '/users' do
+    #  erb :'/users/logged_in'
+    #end
 
 
   get '/users/show' do 
     redirect to :'users/show'
   end 
 
-  post '/users/login' do 
-    erb :'/users/test'
-  end 
 
-    get '/logout' do
-      if is_logged_in?
-        session.clear
-        redirect to '/login'
-      else
-        redirect to '/'
-      end
+  get '/logout' do
+    if is_logged_in?
+      session.clear
+      redirect to '/login'
+    else
+      redirect to '/'
     end
-  end 
-end 
-end 
+  end
+
 end 
