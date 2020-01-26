@@ -15,27 +15,28 @@ class StudentsController < ApplicationController
       erb :"students/show"
     end
   
-    post '/create' do 
-      student = Students.new(name: params["name"], age: params["age"])
-      if !student.name.empty? && student.age.empty?
-        student.save
-      elsif
-        @error = "Please create a new Student"
-      else 
-        new_student= Students.create(name: params["name"], age: params["age"], image: params["image"])
+    post '/students' do 
+      student = Student.new(name: params["name"], age: params["age"])
+      if student.save
+        session[:student_id] = student.id    
+        redirect '/student' 
+      elsif         
+        @error = "Please create a new student"
+        new_student= Student.create(name: params["name"], age: params["age"], image: params["image"])
         session[:student_id] = new_student.id   
         student.save 
         redirect '/students/show'
     end 
+  end 
 
     get '/student' do 
       @students = Student.all.reverse
-      erb :'/students/index'
+     erb :'/students/index'
     end 
 
     get '/student/:id' do 
        @student = Student.find(params[id])
-      erb :'/students/show'
+      erb :'/students/index'
    end 
 
 
@@ -48,4 +49,3 @@ class StudentsController < ApplicationController
       end
     end
   end
-end 

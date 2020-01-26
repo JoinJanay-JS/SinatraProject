@@ -5,28 +5,31 @@
 <br><br>
 <form method="POST" action="/students">
   <div class="form-group">
-    <label for="name">Name *</label>
-    <input type="text" class="form-control" id="name" name="name" required>
-  </div>
-  <div class="form-group">
-    <label for="age">Age *</label>
-    <input type="text" class="form-control" id="age" name="age" required>
-  </div>
-  <div class="form-group">
+  Name: *<br>
+  <input type="text" name="name" value="" required>
+  <br>
+  Age: *<br>
+  <input type="text" name="age" value="" required>
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+<br><br>
   <strong><u>Image (Add an Image for your student Here... )</u></strong>:<br>
     <% @students.each do |s| %>
     <% activities = Activity.find(s.activities_title) %>
     <div class="form-group">
-      <form action="/action_page.php">
-        <input type="file" name="pic" accept="image/*">
+      <form action="/students/images">
+        <input type="file" name="image" name="filename">
         <input type="submit">
+        <input type="file" name="pic" accept="image/*">
+
         <input action="/students/images" type="checkbox" name="image" value="<% s.image %>">
           <% s.name %>
 
             <% end %> 
             <% else %>
             <%@students.each do |s|%>
-              <a href="/students/landingpages"><%= student.activity.title %></a>
+              <a href="/students/landingpages"><%= @students.activities.title %></a>
                <% end %>
   <% end %>
   </div>
