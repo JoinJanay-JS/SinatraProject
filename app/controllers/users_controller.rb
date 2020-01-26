@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
     get '/signup' do
       redirect to '/users' if is_logged_in?
       #go to users page and allow users to select student
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
       end 
 
       get '/login' do
-        @user = Users.new(username: params["username"], email: params["email"], password: params["password"])
+        @users = Users.new(username: params["username"], email: params["email"], password: params["password"])
         redirect to '/students' if is_logged_in?
     
         erb :"users/logged_in"
@@ -35,8 +36,6 @@ class UsersController < ApplicationController
         }
     
         is_empty?(user_info, 'login')
-    
-        user = Users.find_by(:email => user_info[:email])
     
         if user && user.authenticate(user_info[:password])
           session[:user_id] = user.id
@@ -68,7 +67,7 @@ class UsersController < ApplicationController
       if !student.name.empty? && student.age.empty?
         student.save
       elsif
-        @error = "Please create a new Student by adding a name and activity"
+        @error = "Please create a new Student"
       else 
         new_student= Students.create(name: params["name"], age: params["age"], image: params["image"])
         session[:student_id] = new_student.id   

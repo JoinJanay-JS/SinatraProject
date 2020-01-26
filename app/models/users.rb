@@ -1,5 +1,5 @@
-class User < ActiveRecord::Base
-    has_one :username
+class Users < ActiveRecord::Base
+    has_many :username
     has_many :students
     has_many :activities, through: :students
     has_many :titles, through: :activities
