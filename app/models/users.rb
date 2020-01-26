@@ -1,4 +1,4 @@
-class Users < ActiveRecord::Base
+class User < ActiveRecord::Base
     has_one :username
     has_many :students
     has_many :activities, through: :students
