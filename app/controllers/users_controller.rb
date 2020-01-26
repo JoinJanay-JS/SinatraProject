@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         new_user= Users.create(username: params["username"], email: params["email"], password: params["password"])
         session[:user_id] = new_user.id   
         user.save 
-        redirect '/users/show'
+        redirect '/users/logged_in'
       end 
       end 
 
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     
         if user && user.authenticate(user_info[:password])
           session[:user_id] = user.id
-          redirect to '/users/logged_in'
+          redirect to '/users'
         else
           if user
             flash[:password] = "Your password is incorrect"

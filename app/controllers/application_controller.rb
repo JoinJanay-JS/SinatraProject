@@ -37,7 +37,6 @@ class ApplicationController < Sinatra::Base
       "Thank you for the entry, Sneaky Teacher!"
     end
 
-
   end
 
 
