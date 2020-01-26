@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       end 
 
       get '/login' do
+        @user = Users.new(username: params["username"], email: params["email"], password: params["password"])
         redirect to '/students' if is_logged_in?
     
         erb :"users/logged_in"
