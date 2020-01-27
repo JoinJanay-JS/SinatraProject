@@ -1,5 +1,5 @@
 <h1>Welcome Back, <%= current_user.username %>! Please Select Your Student</h1>
-<% if @students.empty? %>
+<% if Student.all.empty? %>
 
 <h2>Create a New Student</h2>
 <br><br>
@@ -16,7 +16,7 @@
 <br><br>
   <strong><u>Image (Add an Image for your student Here... )</u></strong>:<br>
     <% @students.each do |s| %>
-    <% activities = Activity.find(s.activities_title) %>
+    <% students = Student.find(s.name) %>
     <div class="form-group">
       <form action="/students/images">
         <input type="file" name="image" name="filename">

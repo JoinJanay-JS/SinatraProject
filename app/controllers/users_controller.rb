@@ -28,15 +28,9 @@ class UsersController < ApplicationController
       erb :'/users/logged_in'
     end
 
-    #post '/users' do
-    #  erb :'/users/logged_in'
-    #end
-
-
   get '/users/show' do 
     redirect to :'users/show'
   end 
-
 
   get '/logout' do
     if is_logged_in?

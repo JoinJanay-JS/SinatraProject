@@ -5,7 +5,7 @@
     <p>Student Activities</p>
     <a class="btn btn-info btn-sm" href="/students/<%= @student.id %>/edit" role="button">Edit student</a>
   <% else %>
-    <p>From <%= @students.user.name %>'s Travel Bucket List</p>
+    <p>From <%= @students.user.name %>'s Activities</p>
     <a class="btn btn-info btm-sm" href="/students/<%= @student.id %>/new_from_user" role="button">Add this to my List</a>
   <% end %>
 <hr class="my-4">
