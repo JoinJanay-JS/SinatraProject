@@ -3,28 +3,23 @@ class Activity < ActiveRecord::Base
 
 
     def self.create_new_activity(title, supplies, image, instructions)
+    (
       @title = title 
       @supplies = supplies
       @image = image
       @instructions = instructions 
       @students = Student.find(session[:id])
 
-      set_student_activity
+      
 
-      @activities = Activity.new(
-        :title => @title[:title]
-        :supplies => @supplies[:supplies]
-        :instructions => @instuctions[:instuctions]
-      )
+      @activities = Activity.new
+    )
+      @activities.update
 
-      @activities.students = @student_activities
-
+    
       @activities.save
       @activities
 
     end 
 
     end 
-
-
-  end
