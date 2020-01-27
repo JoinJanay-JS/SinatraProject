@@ -30,6 +30,10 @@ class ApplicationController < Sinatra::Base
       @students || Student.find_by_id(session[:user_id])
     end 
 
+    def activities
+      @activities || Student.joins(Activities.all).where(:student.activities_id = :activity.activities_id)
+    end
+  
 
     get '/action_page.php' do
       "Thank you for the entry, Sneaky Teacher!"

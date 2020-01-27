@@ -1,0 +1,16 @@
+<h1>Make Changes to <%= @Activity.title %></h1>
+<form method="POST" action="/Activities/<%= @Activity.id %>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="title">title *</label>
+    <input type="text" class="form-control" id="title" name="title" value="<%= @Activity.title %>" required>
+  </div>
+  <div class="form-group">
+    <label for="Student">Student *</label><% Student = Student.find(@Activity.Student_id) %>
+    <input type="text" class="form-control" id="title" name="Student" value="<%= Student.name %>" required>
+  </div>
+    <% end %>
+  </div>
+    <br><br>
+    <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Save Your Changes</button>
+</form> 

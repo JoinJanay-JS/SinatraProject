@@ -28,9 +28,11 @@
 
             <% end %> 
             <% else %>
-            <%@students.each do |s|%>
-              <a href="/students/landingpages"><%= @students.activities.title %></a>
+            <% @students.all.each do |s|%>
+              <% unless s.user_id == @user.id %>
+              <a href="/students/landingpages"><Student Activities ></a>
                <% end %>
+            <% end %>   
   <% end %>
   </div>
 </form>
