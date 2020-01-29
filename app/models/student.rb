@@ -6,7 +6,7 @@ class Student < ActiveRecord::Base
 
 
     def student_activities
-      SELECT * activities FROM Student
+      @student_activities = Student.activities.save 
     end 
 
   end

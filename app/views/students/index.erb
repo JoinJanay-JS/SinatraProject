@@ -1,14 +1,14 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-      <h1>Click your activity, <%= @students.name %></h1>
-        <h4><%= Activity.title%> <a href="<%= Activity.id %>%"></a></h4>
+      <h1>List All Students Created, <%= current_user.username %></h1>
+        <h4><%= Student.name%> <a href="<%= Student.id %>%"></a></h4>
         <h5>Add a New Activity Here</h5>
         <form method="POST" action="/activity">
         <label><strong>Title: *</strong></label><br>
         <input type="text" name="Title" required><br>
         <label><strong>Supplies: *</strong></label><br>
-        <input type="text" name="password"><br>
+        <input type="text/" name="password"><br>
         <br>
         <input class="btn btn-info" type="submit" value="Log In">
         </form>

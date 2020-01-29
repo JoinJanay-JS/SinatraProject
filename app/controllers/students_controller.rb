@@ -29,13 +29,15 @@ class StudentsController < ApplicationController
     end 
   end 
 
+
     get '/student' do 
-      @students = Student.all.reverse
+      @students = Student.all
      erb :'/students/index'
+
     end 
 
     get '/student/:id' do 
-       @student = Student.find(params[id])
+       @students = Student.find(params[:id])
       erb :'/students/index'
    end 
 
