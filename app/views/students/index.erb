@@ -1,8 +1,9 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-      <h1>List All Students Created, <%= current_user.username %></h1>
-        <% @students.each do |s| %>
+      <h1>List All Students Created, <%= current_user.username %></h1>  
+        <% students = Student.all %>
+        <% students.each do |s| %>
         <h4><a href="/students/<%= s.id %>"><%= s.name%>, <%= s.age %></a></h4>
         <% end %>
         <br><br>
@@ -11,7 +12,10 @@
         <label><strong>Title: *</strong></label><br>
         <input type="text" name="Title" required><br>
         <label><strong>Supplies: *</strong></label><br>
-        <input type="text/" name="password"><br>
+        <input type="text/" name="supplies"><br>
+        <br>
+        <textarea name="message" style="width:200px; height:600px;">
+        </textarea>
         <br>
         <input class="btn btn-info" type="submit" value="Submit">
         </form>

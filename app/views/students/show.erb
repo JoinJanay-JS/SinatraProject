@@ -2,22 +2,25 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-        <h1>Update <%= s.name %> Here</h1>
+        <% students = Student.all %>
+        <% students.each do |s| %>
+        <% end %>
+        <h1>Update <%= students.name %> Here</h1>
         <h2>Click on the student to update their information.</h2>
-        <form method="POST" action="/students/<%= @s.id %>">
+        <form method="PATCH" action="/students/<%= students.id %>">
           <input id="hidden" type="hidden" name="_method" value="patch">
             <div class="form-group">
               <label for="name">Name *</label>
-              <input type="text" class="form-control" id="name" name="name" value="<%= @s.name %>" required>
-    </div>
+              <input type="text" class="form-control" id="name" name="name" value="<%= @students.name %>" required>
+            </div>
            <div class="form-group">
               <label for="age">Age *</label>
-              <input type="text" class="form-control" id="age" name="age" value="<%= @s.age %>" required>
-    </div>
-        <a class="btn btn-info btn-sm" href="/students/<%= @s.id %>/edit" role="button">Edit Student</a>
+              <input type="text" class="form-control" id="age" name="age" value="<%= @students.age %>" required>
+          </div>
+        <a class="btn btn-info btn-sm" href="/students/<%= @students.id %>/edit" role="button">Edit Student</a>
         </form>
         <br><br>
-        <form method="POST" action="/student/<%= @s.id %>/delete">
+        <form method="POST" action="/student/<%= @students.id %>/delete">
         <input id="hidden" type="hidden" name="_method" value="delete">
         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
         </form>

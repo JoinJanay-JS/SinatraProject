@@ -28,15 +28,10 @@ class StudentsController < ApplicationController
 
 
     get '/students/:id' do 
-     erb :'/students/index'
+      students = Student.all
+     erb :'students/show'
     end 
 
-    post '/students' do 
-      @students = Student.all
-    end  
-
-   
-    
     patch '/students/:id' do 
       students = Student.find(params[:id])
       student = Student.update(name, age)
@@ -50,20 +45,20 @@ class StudentsController < ApplicationController
     end
     
     post '/students/:id/edit' do
+      @students.update
+      flash[:message] = "Your student has been updated"
+      redirect to '/students'
     end
 
     get '/students/:id/delete' do
+      erb :'/students/index'
     end
 
     post '/students/:id/delete' do
-      erb :'/students/show'
+      @students.destroy
+      flash[:message] = "Your student has been deleted"
+      redirect to '/students'
     end
-
-    get '/student/:id' do 
-       @students = Student.find(params[:id])
-      erb :'/students/index'
-   end 
-
 
     get '/back' do
       if is_logged_in?
