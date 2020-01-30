@@ -26,16 +26,6 @@ class UsersController < ApplicationController
       erb :'/users/logged_in'
     end
 
-
-    get '/users/:id' do 
-    end 
-
-    post '/users/:id' do 
-
-    end 
-  
-
-
   get '/users/show' do 
     redirect to :'users/show'
   end 

@@ -31,17 +31,22 @@ class StudentsController < ApplicationController
      erb :'/students/index'
     end 
 
-    post '/student' do 
+    post '/students' do 
       @students = Student.all
-      erb
     end  
 
    
     
-    post '/students/:id' do 
-    end 
+    patch '/students/:id' do 
+      students = Student.find(params[:id])
+      student = Student.update(name, age)
+      flash[:message] = "Successfully updated your Student!"
+        redirect to "/students/#{student.id}"
+    end
+   
 
     get '/students/:id/edit' do
+      erb :'/students/show'
     end
     
     post '/students/:id/edit' do
@@ -51,6 +56,7 @@ class StudentsController < ApplicationController
     end
 
     post '/students/:id/delete' do
+      erb :'/students/show'
     end
 
     get '/student/:id' do 
