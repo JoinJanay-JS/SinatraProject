@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h1 class="display-3"><%= @student.name %></h1>
-  <p class="lead"><strong>Students:</strong> <a href="/students/<%= @students.name.id %>"><%= @student.activities.title %></a></p>
+  <p class="lead"><strong>Students:</strong> <a href="/students/<%= @students.name %>"><%= @student.activities %></a></p>
   <% if @students.student_id == @student.id %>
     <p>Student Activities</p>
     <a class="btn btn-info btn-sm" href="/students/<%= @student.id %>/edit" role="button">Edit student</a>
