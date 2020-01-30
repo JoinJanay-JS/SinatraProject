@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       user = User.new(username: params["username"], email: params["email"], password: params["password"])
       if user.save
         session[:user_id] = user.id    
-        redirect '/users'  
+        redirect '/students'  
       elsif  
         user = User.find_by(username: params["username"]) 
         @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
@@ -23,10 +23,18 @@ class UsersController < ApplicationController
 
 
     get '/users' do 
-      @user = User.find_by(id: params["id"])
-      @students = Student.all
       erb :'/users/logged_in'
     end
+
+
+    get '/users/:id' do 
+    end 
+
+    post '/users/:id' do 
+
+    end 
+  
+
 
   get '/users/show' do 
     redirect to :'users/show'

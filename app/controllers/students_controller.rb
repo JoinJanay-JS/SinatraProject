@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-    before '/students/*' do
+    before '/students*' do
       if !is_logged_in?
         flash[:message] = "You need to be logged in to perform that action"
         redirect to '/login'
@@ -11,30 +11,47 @@ class StudentsController < ApplicationController
         flash[:message] = "You need to be logged in to performance that action"
         redirect to '/login'
       end
-      @students = Student.all.sort_by{|s| s.name}
-      erb :"students/show"
+      @students = Student.all
+      erb :"students/index"
     end
   
     post '/students' do 
       student = Student.new(name: params["name"], age: params["age"])
-      if student.save
-        session[:student_id] = student.id    
-        redirect '/student' 
-      elsif         
+      if student.save  
+        redirect '/students' 
+      else         
         @error = "Please create a new student"
-        new_student= Student.create(name: params["name"], age: params["age"], image: params["image"])
-        session[:student_id] = new_student.id   
-        student.save 
-        redirect '/students/show'
+        student= Student.create(name: params["name"], age: params["age"], image: params["image"]) 
+        redirect '/students/#{student.id}'
     end 
   end 
 
 
-    get '/student' do 
-      @students = Student.all
+    get '/students/:id' do 
      erb :'/students/index'
-
     end 
+
+    post '/student' do 
+      @students = Student.all
+      erb
+    end  
+
+   
+    
+    post '/students/:id' do 
+    end 
+
+    get '/students/:id/edit' do
+    end
+    
+    post '/students/:id/edit' do
+    end
+
+    get '/students/:id/delete' do
+    end
+
+    post '/students/:id/delete' do
+    end
 
     get '/student/:id' do 
        @students = Student.find(params[:id])

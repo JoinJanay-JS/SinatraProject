@@ -1,0 +1,29 @@
+<h1>What Activies would you like to do today?</h1>
+<form method="POST" action="/activities">
+  <div class="form-group">
+    <label for="title">Title </label>
+    <input type="text" class="form-control" id="title" name="title" required>
+  </div>
+  <div class="form-group">
+    <label for="Instructions">Instructions </label>
+    <input type="text" class="form-control" id="instructions" name="instructions" required>
+  </div>
+  <div class="form-group">
+  <strong><u>Tags (Please add all that apply)</u></strong>:<br>
+    <div id="myDIV" class="header">
+      <h2 style="margin:5px">Supplies Needed</h2>
+      <input type="text" id="myInput" placeholder="Supply...">
+      <span onclick="newElement()" class="addBtn">Add</span>
+    </div>
+
+    <ul id="myUL">
+        <li>Scissors</li>
+  
+    </ul>
+      </label>
+    </div>
+    <% end %>
+  </div>
+  <br><br>
+  <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Sneakily Add New Activies</button>
+</form>

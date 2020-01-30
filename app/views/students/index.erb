@@ -2,7 +2,10 @@
   <div class="home-page-container">
     <div class="text-center">
       <h1>List All Students Created, <%= current_user.username %></h1>
-        <h4><%= Student.name%> <a href="<%= Student.id %>%"></a></h4>
+        <% @students.each do |s| %>
+        <h4><a href="/students/<%= s.id %>"><%= s.name%>, <%= s.age %></a></h4>
+        <% end %>
+        <br><br>
         <h5>Add a New Activity Here</h5>
         <form method="POST" action="/activity">
         <label><strong>Title: *</strong></label><br>

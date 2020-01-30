@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
    if user && user.authenticate(params[:password])
      session[:user_id] = user.id
-     redirect to '/users'
+     redirect to '/students'
    else
        flash[:message] = "Your password is incorrect"
        redirect to '/login'
