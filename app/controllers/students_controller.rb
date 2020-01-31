@@ -22,13 +22,13 @@ class StudentsController < ApplicationController
       else         
         @error = "Please create a new student"
         student= Student.create(name: params["name"], age: params["age"], image: params["image"]) 
-        redirect '/students/#{student.id}'
+        redirect "/students/#{student.id}"
     end 
   end 
 
 
     get '/students/:id' do 
-      students = Student.all
+      @students = Student.all
      erb :'students/show'
     end 
 
@@ -41,6 +41,7 @@ class StudentsController < ApplicationController
    
 
     get '/students/:id/edit' do
+      @student = Student.find(params[:id])
       erb :'/students/show'
     end
     
@@ -50,15 +51,13 @@ class StudentsController < ApplicationController
       redirect to '/students'
     end
 
-    get '/students/:id/delete' do
-      erb :'/students/index'
-    end
-
-    post '/students/:id/delete' do
+    delete '/students/:id/delete' do
       @students.destroy
       flash[:message] = "Your student has been deleted"
       redirect to '/students'
     end
+
+
 
     get '/back' do
       if is_logged_in?
