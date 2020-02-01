@@ -22,6 +22,10 @@ class UsersController < ApplicationController
     erb :'/users/index'
   end 
 
+  post '/login' do 
+    erb :'/users/index'
+  end 
+
   get '/users' do 
     erb :'/users/index'
   end

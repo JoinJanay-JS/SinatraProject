@@ -21,7 +21,7 @@ class StudentsController < ApplicationController
         redirect '/students' 
       else         
         @error = "Please create a new student"
-        student= Student.create(name: params["name"], age: params["age"], image: params["image"]) 
+        student = Student.create(name: params["name"], age: params["age"], image: params["image"]) 
         redirect "/students/#{student.id}"
     end 
   end 
