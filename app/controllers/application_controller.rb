@@ -13,9 +13,6 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
-  get '/users/index' do 
-    erb :'/users/index'
-  end 
 
   helpers do
     def is_logged_in?
@@ -30,16 +27,8 @@ class ApplicationController < Sinatra::Base
       @students || Student.find_by_id(session[:user_id])
     end 
 
-    def activities
-      @activities || Student.joins(Activities.all).where(:student.activities_id = :activity.activities_id)
-    end
-  
-    
-
-    get '/action_page.php' do
-      "Thank you for the entry, Sneaky Teacher!"
-    end
-
+    def student 
+      @student || Student.find_by(params[:id])
   end
 
 

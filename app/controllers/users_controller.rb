@@ -10,20 +10,20 @@ class UsersController < ApplicationController
       user = User.new(username: params["username"], email: params["email"], password: params["password"])
       if user.save
         session[:user_id] = user.id    
-        redirect '/students'  
-      elsif  
+        redirect '/users'  
+      else
         user = User.find_by(username: params["username"]) 
         @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
-      else
-        @error = "Not so fast, Sneaky Teacher!"
         erb :'users/signup'
-  
       end 
-      end 
+    end 
 
+    get '/login' do 
+      erb :'/users/index'
+    end 
 
     get '/users' do 
-      erb :'/users/logged_in'
+      erb :'/users/index'
     end
 
   get '/users/show' do 

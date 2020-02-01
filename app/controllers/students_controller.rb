@@ -46,7 +46,7 @@ class StudentsController < ApplicationController
     end
     
     post '/students/:id/edit' do
-      @students.update
+      @students.update(params[:name, :age])
       flash[:message] = "Your student has been updated"
       redirect to '/students'
     end
@@ -56,8 +56,6 @@ class StudentsController < ApplicationController
       flash[:message] = "Your student has been deleted"
       redirect to '/students'
     end
-
-
 
     get '/back' do
       if is_logged_in?
