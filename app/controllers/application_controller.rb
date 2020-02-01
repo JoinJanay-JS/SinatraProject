@@ -30,8 +30,6 @@ class ApplicationController < Sinatra::Base
     def student 
       @student || Student.find_by(params[:id])
   end
-
-
-
+end
 
 end

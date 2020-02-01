@@ -28,31 +28,31 @@ class StudentsController < ApplicationController
 
 
     get '/students/:id' do 
-      @students = Student.all
+      student = Student.find(params[:id])
      erb :'students/show'
     end 
 
     patch '/students/:id' do 
-      students = Student.find(params[:id])
-      student = Student.update(name, age)
+      student = Student.find(params[:id])
+      student.update(params [:name, :age])
       flash[:message] = "Successfully updated your Student!"
         redirect to "/students/#{student.id}"
     end
    
 
     get '/students/:id/edit' do
-      @student = Student.find(params[:id])
+      student.find(params[:id])
       erb :'/students/show'
     end
     
     post '/students/:id/edit' do
-      @students.update(params[:name, :age])
+      student.update(params[:name, :age])
       flash[:message] = "Your student has been updated"
-      redirect to '/students'
+      redirect to "/students/#{student.id}"
     end
 
     delete '/students/:id/delete' do
-      @students.destroy
+      student.destroy
       flash[:message] = "Your student has been deleted"
       redirect to '/students'
     end

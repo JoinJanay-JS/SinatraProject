@@ -3,11 +3,10 @@
     <div class="text-center">
       <h1>List All Students Created, <%= current_user.username %></h1>  
         <% students = Student.all %>
-        <% students.each do |s| %>
+        <% student.each do |s| %>
         <h4><a href="/students/<%= s.id %>"><%= s.name%>, <%= s.age %></a></h4>
         <% end %>
         <br><br>
-        <% @students.each do |s| %>
         <h5>Would you like to add a New Activity? Add here! </h5>
         <form method="POST" action="/activity">
         <label><strong>Title: *</strong></label><br>
@@ -20,7 +19,6 @@
         <br>
         <input class="btn btn-info" type="submit" value="Submit">
         </form>
-        <% end %>
     </div>
   </div>
 </body>
