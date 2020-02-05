@@ -35,6 +35,7 @@ class StudentsController < ApplicationController
         flash[:message] = "This isn't your student"
       erb :'/students/show'
     end
+  end 
     
     post '/students/:id/edit' do
       student.update(params[:name, :age])
