@@ -2,7 +2,7 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-        <% @students.each do |s| %>
+        <% @student.each do |s| %>
         <h1>Update <%= s.name %> Here</h1>
         <h2>Click on the student to update their information.</h2>
         <form method="PATCH" action="/students/<%= s.id %>">

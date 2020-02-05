@@ -29,13 +29,8 @@ class UsersController < ApplicationController
     erb :'/users/index'
   end
 
-  post '/users' do
-  end
-
 get '/users/show' do 
   redirect to :'users/show'
 end 
-
-
 
 end 
