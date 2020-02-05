@@ -31,6 +31,8 @@ class StudentsController < ApplicationController
 
     get '/students/:id/edit' do
       student.find(params[:id])
+      if @user.id != @student.user_id
+        flash[:message] = "This isn't your student"
       erb :'/students/show'
     end
     

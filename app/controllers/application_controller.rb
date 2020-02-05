@@ -24,11 +24,11 @@ class ApplicationController < Sinatra::Base
     end
  
     def students
-       Student.find_by_id(session[:user_id]) || @students
+      Student.create(name: params["name"], age: params["age"], session[:user_id]) || @students
     end 
 
     def student 
-      Student.find_by(session[:user_id], params[:id]) || @student
+      Student.find_by(params[:id], session[:user_id]) || @student
   end
 end
 

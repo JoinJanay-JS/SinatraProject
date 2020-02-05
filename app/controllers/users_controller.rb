@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     erb :'/users/index'
   end
 
-  post '/users' do 
+  post '/users' do
   end
 
 get '/users/show' do 
