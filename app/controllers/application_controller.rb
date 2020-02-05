@@ -20,15 +20,15 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      @user ||= User.find_by_id(session[:user_id])
+      User.find_by_id(session[:user_id]) || @user
     end
  
     def students
-      @students || Student.find_by_id(session[:user_id])
+       Student.find_by_id(session[:user_id]) || @students
     end 
 
     def student 
-      @student || Student.find_by(params[:id])
+      Student.find_by(params[:id]) || @student
   end
 end
 
