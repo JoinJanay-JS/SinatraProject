@@ -18,9 +18,18 @@ class UsersController < ApplicationController
     end 
   end 
 
+  get '/login' do
+    if !is_logged_in?
+      redirect to '/users'
+      erb :'/users/index'
+    end 
+  end 
 
   get '/users' do 
     erb :'/users/index'
+  end
+
+  post '/users' do 
   end
 
 get '/users/show' do 

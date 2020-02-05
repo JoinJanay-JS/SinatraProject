@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   set :public_folder, "public"
 
   get '/' do
-    erb :welcome
+   erb :welcome
   end
 
 
@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
     end 
 
     def student 
-      Student.find_by(params[:id]) || @student
+      Student.find_by(session[:user_id], params[:id]) || @student
   end
 end
 
