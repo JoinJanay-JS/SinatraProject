@@ -1,25 +1,40 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-        <h1>Update <%= s.name %> Here</h1>
-        <h2>Click on the student to update their information.</h2>
-        <form method="POST" action="/students/<%= @s.id %>">
-          <input id="hidden" type="hidden" name="_method" value="patch">
-            <div class="form-group">
-              <label for="name">Name *</label>
-              <input type="text" class="form-control" id="name" name="name" value="<%= @s.name %>" required>
-    </div>
-           <div class="form-group">
-              <label for="age">Age *</label>
-              <input type="text" class="form-control" id="age" name="age" value="<%= @s.age %>" required>
-    </div>
-        <a class="btn btn-info btn-sm" href="/students/<%= @s.id %>/edit" role="button">Edit Student</a>
-        </form>
-        <br><br>
-        <form method="POST" action="/student/<%= @s.id %>/delete">
-        <input id="hidden" type="hidden" name="_method" value="delete">
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-        </form>
-    </div>
+        <h1>Update <%= @s.name %> Here</h1>
+		<h2>Click on the student to update their information.</h2>
+		<h2><%= @s.name %></h2>
+			<p><%= @s.age %></p>
+			<p> Add an image here...</p>
+			<br><br>
+  <strong><u>Image (Add an Image for your student Here... )</u></strong>:<br>
+<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+<p><img id="output" width="200" /></p>
+
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+<br><br>
+<h2> Delete Student Here </h2>
+			<a href="/student/<%= @s.id %>" name="_method" value="delete">Delete Student</a>
+<form method="student" action="/student/<%= @s.id %>"> 
+    		<input type="hidden" name="_method" value="put">
+    		<input type="text" name="name" value="<%= @s.name %>">
+    		<input type="text" name="age" value="<%= @s.age %>">
+    		<button type="submit">Update student</button>
+	</form>
+<br><br>
+	<h2>Edit Student</h2>
+	<form method="student" action="/student/<%= @s.id %>"> 
+    		<input type="hidden" name="_method" value="put">
+    		<input type="text" name="name" value="<%= @s.name %>">
+    		<input type="text" name="age" value="<%= @s.age %>">
+    		<button type="submit">Update student</button>
+	</form>
+      </div>
   </div>
 </body>

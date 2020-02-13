@@ -10,26 +10,27 @@ class ApplicationController < Sinatra::Base
   set :public_folder, "public"
 
   get '/' do
+    if is_logged_in?
+      redirect to '/users'
+    end 
    erb :welcome
   end
 
-
   helpers do
     def is_logged_in?
-      !!current_user
+        !!session[:user_id]
     end
 
     def current_user
-      User.find_by_id(session[:user_id]) || @user
+      User.find_by(session[:user_id])
     end
  
     def students
-      Student.create(params[:name], params[:age], session[:user_id]) || @students
+      students = Student.all
     end 
 
     def student 
-      Student.find_by(params[:id], session[:user_id]) || @student
+     student= Student.find_by(params[:id], session[:user_id]) 
+    end
   end
-end
-
-end
+end 

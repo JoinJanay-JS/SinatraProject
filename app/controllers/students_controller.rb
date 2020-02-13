@@ -1,60 +1,46 @@
 class StudentsController < ApplicationController
 
     get '/students' do
-      if !is_logged_in?
-        flash[:message] = "You need to be logged in to performance that action"
-        redirect to '/login'
-      end
       erb :"students/index"
     end
   
-    post '/students' do 
-      if student.save  
-        redirect '/students' 
-      else         
-        @error = "Please create a new student"
-        redirect "/students/#{student.id}"
-    end 
-  end 
+    post '/students' do
+      students.save 
+      redirect to "/student/#{@student.id}"
+    end
 
-
-    get '/students/:id' do 
+    get '/student/:id' do 
+      @student = Student.find_by_id(params[:id])
      erb :'students/show'
     end 
 
-    patch '/students/:id' do
-      student.update(params [:name, :age])
+      patch '/student/:id' do 
+        @student = student.find_by_id(params[:id])
+        @student.name = params[:name]
+        @student.age = params[:age]
+        @student.save
       flash[:message] = "Successfully updated your Student!"
-        redirect to "/students/#{student.id}"
+        redirect to "/student/#{student.id}"
     end
    
 
-    get '/students/:id/edit' do
-      student.find(params[:id])
+    get '/student/:id/edit' do
+      @student.find_by_id(params [:id])
       if @user.id != @student.user_id
         flash[:message] = "This isn't your student"
       erb :'/students/show'
     end
   end 
     
-    post '/students/:id/edit' do
+    post '/student/:id/edit' do
       student.update(params[:name, :age])
       flash[:message] = "Your student has been updated"
-      redirect to "/students/#{student.id}"
+      redirect to "/student/#{student.id}"
     end
 
-    delete '/students/:id/delete' do
+    delete '/student/:id/delete' do
       student.destroy
       flash[:message] = "Your student has been deleted"
       redirect to '/students'
-    end
-
-    get '/back' do
-      if is_logged_in?
-        session.clear
-        redirect to '/users'
-      else
-        redirect to '/'
-      end
     end
   end

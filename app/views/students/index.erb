@@ -1,23 +1,23 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-      <h1>List All Students Created, <%= current_user.username %></h1>  
-        <% students.each do |s| %>
-        <h4><a href="/students/<%= s.id %>"><%= s.name%>, <%= s.age %></a></h4>
-        <% end %>
-        <br><br>
-        <h5>Would you like to add a New Activity? Add here! </h5>
-        <form method="POST" action="/activity">
-        <label><strong>Title: *</strong></label><br>
-        <input type="text" name="Title" required><br>
-        <label><strong>Supplies: *</strong></label><br>
-        <input type="text/" name="supplies"><br>
-        <br>
-        <textarea name="message" style="width:400px; height:600px;">
-        </textarea>
-        <br>
-        <input class="btn btn-info" type="submit" value="Submit">
-        </form>
+       
+       <h2>List All Students Created, <%= current_user.username %></h2>
+<ul>
+<% students.each do |s| %>
+ <li>
+   <a href="/student/<%= s.id %>"><%= s.name %></a> 
+ </li>
+<% end %>
+</ul>
+<h2>Add Student</h2>
+    <form method="post" action="/student">
+		  <label for="name">Name: </label>
+   <input type="text" name="name">
+   <label for="age">Age: </label>
+   <input type="text" name="age">
+   <input type ="submit" value="Add Student">
+      </form>
     </div>
   </div>
 </body>
