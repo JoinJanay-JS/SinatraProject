@@ -5,8 +5,9 @@ class StudentsController < ApplicationController
     end
   
     post '/students' do
-      students.save 
-      redirect to "/student/#{@student.id}"
+      Student.create()
+      student.save
+      erb :"students/index"
     end
 
     get '/student/:id' do 
