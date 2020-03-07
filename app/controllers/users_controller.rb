@@ -5,12 +5,11 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    user = User.create(username: params["username"], email: params["email"], password: params["password"])
-    if user.save
-      session[:user_id] = user.id    
+    user = User.all()
+      new_user = User.create(username: params["username"], email: params["email"], password: params["password"]  )
+      session[:user_id] = new_user.id 
       redirect '/users'  
-    else
-      user = User.find_by(username: params["username"]) 
+     if new_user = User.find_by(username: params["username"]) 
       @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
       erb :'users/signup'
     end 

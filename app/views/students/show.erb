@@ -3,28 +3,27 @@
   <div class="home-page-container">
     <div class="text-center"> 
         <h1>Click on the student to update their information.</h1>
-        <h2>Update <a href="/student/#{student.id}"><%= s.name %></a> Here</h2>
-        <% students.each do |s| %>
-        <form method="PATCH" action="/student/<%= s.id %>">
+        <h2>Update <%= @student.name %> Here</h2>
+        
+        <form method="POST" action="/student/<%= @student.id %>">
           <input id="hidden" type="hidden" name="_method" value="patch">
             <div class="form-group">
               <label for="name">Name *</label>
-              <input type="text" class="form-control" id="name" name="name" value="<%= s.name %>" required>
+              <input type="text" class="form-control" id="name" name="name" value="<%= @student.name %>" required>
             </div>
            <div class="form-group">
               <label for="age">Age *</label>
-              <input type="text" class="form-control" id="age" name="age" value="<%= s.age %>" required>
+              <input type="text" class="form-control" id="age" name="age" value="<%= @student.age %>" required>
           </div>
-        <a class="btn btn-info btn-sm" href="/student/<%= s.id %>/edit" role="button">Edit Student</a>
-        <% if student.user_id == User.ids %>
+        <a class="btn btn-info btn-sm" href="/student/<%= @student.id %>/edit" role="button">Edit Student</a>
+        <% if @student.user_id == current_user.id %>
         <% end %>
         </form>
         <br><br>
-        <form method="POST" action="/student/<%= s.id %>/delete">
+        <form method="POST" action="/student/<%= @student.id %>/delete">
         <input id="hidden" type="hidden" name="_method" value="delete">
         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
         </form>
-        <% end %>
         <p><a href="/logout">Log Out</a></p>  
     </div>
   </div>

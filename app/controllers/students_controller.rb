@@ -11,10 +11,18 @@ class StudentsController < ApplicationController
     end
 
     get '/student/:id' do 
-      @student = Student.find_by_id(params[:id])
+      #binding.pry
+      @student = Student.find_by(id: params[:id])
      erb :'students/show'
     end 
 
+    get '/student/:id/edit' do
+      @student = student.find_by_id(params[:id])
+    # if current_user.id != @student.id
+    flash[:message] = "Successfully updated your Student!"
+      erb :'/students/show'
+  end 
+    
       patch '/student/:id' do 
         @student = student.find_by_id(params[:id])
         @student.name = params[:name]
@@ -25,19 +33,13 @@ class StudentsController < ApplicationController
     end
    
 
-    get '/student/:id/edit' do
-      @student.find_by_id(params [:id])
-      if @user.id != @student.user_id
-        flash[:message] = "This isn't your student"
-      erb :'/students/show'
-    end
-  end 
     
-    post '/student/:id/edit' do
-      student.update(params[:name, :age])
-      flash[:message] = "Your student has been updated"
-      redirect to "/student/#{student.id}"
-    end
+    
+  post '/student/:id/edit' do
+    @student.update(name: params["name"], age: params["age"])
+    flash[:message] = "Successfully updated your Student!"
+      erb :'/students/show'
+  end 
 
     delete '/student/:id/delete' do
       student.destroy

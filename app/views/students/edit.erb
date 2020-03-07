@@ -1,10 +1,10 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-        <h1>Update <%= @s.name %> Here</h1>
+        <h1>Update <%= s.name %> Here</h1>
 		<h2>Click on the student to update their information.</h2>
-		<h2><%= @s.name %></h2>
-			<p><%= @s.age %></p>
+		<h2><%= s.name %></h2>
+			<p><%= s.age %></p>
 			<p> Add an image here...</p>
 			<br><br>
   <strong><u>Image (Add an Image for your student Here... )</u></strong>:<br>
@@ -19,15 +19,15 @@ var loadFile = function(event) {
 };
 </script>
 	<h2>Edit Student</h2>
-	<form method="student" action="/student/<%= @s.id %>"> 
+	<form method="student" action="/student/<%= s.id %>"> 
     		<input type="hidden" name="_method" value="put">
-    		<input type="text" name="name" value="<%= @s.name %>">
-    		<input type="text" name="age" value="<%= @s.age %>">
+    		<input type="text" name="name" value="<%= s.name %>">
+    		<input type="text" name="age" value="<%= s.age %>">
     		<button type="submit">Update student</button>
 	</form>
 	<br><br>
 	<h2> Delete Student Here </h2>
-			<a href="/student/<%= @s.id %>" name="_method" value="delete">Delete Student</a>
+			<a href="/student/<%= s.id %>" name="_method" value="delete">Delete Student</a>
       </div>
   </div>
 </body>
