@@ -5,8 +5,8 @@ class StudentsController < ApplicationController
     end
   
     post '/students' do
-      Student.create()
-      student.save
+      students = Student.new()
+      students.save
       erb :"students/index"
     end
 
@@ -17,6 +17,7 @@ class StudentsController < ApplicationController
     end 
 
     get '/student/:id/edit' do
+     # binding.pry
       @student = student.find_by_id(params[:id])
     # if current_user.id != @student.id
     flash[:message] = "Successfully updated your Student!"

@@ -1,17 +1,7 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-       
-       <h2>List All Students Created, <%= current_user.username %></h2>
-<ul>
-<% students.each do |s| %>
- <h3><li>
-   <a href="/student/<%= s.id %>"><%= s.name %></a> 
- </li></h3>
-</ul>
-<% end %>
-<br><br>
-<h2>Add Student</h2>
+    <h2>Add Student</h2>
     <form method="POST" action='/students'>
 		  <label for="name">Name: </label>
    <input type="text" name="name">
@@ -19,6 +9,16 @@
    <input type="text" name="age">
    <input type ="submit" value="Add Student">
       </form>
+       
+       <h2>List All Students Created, <%= current_user.username %></h2>
+<ul>
+<% students.each do |s| %>
+ <h3><li>
+   <a href="/student/<%= s.id %>"><%= s.name %> ,<%= s.age %> </a> 
+ </li></h3>
+</ul>
+<% end %>
+<br><br>
     </div>
   </div>
 </body>
