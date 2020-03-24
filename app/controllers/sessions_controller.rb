@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
        redirect to '/login'
     end
   end
+end 
 
   get '/logout' do
     if is_logged_in?
@@ -26,3 +27,4 @@ class SessionsController < ApplicationController
     end
   end
 end
+end 

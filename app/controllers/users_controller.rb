@@ -21,12 +21,17 @@ class UsersController < ApplicationController
 
   post '/users' do 
     if student.create
-      redirect to :'/users/show'
+      #redirect to :'/users/show'
     end 
   end
 
-get '/users/show' do 
+get '/users/all_students' do 
   redirect to :'/students'
 end 
 
+    get '/users/:id/students' - 
+        @user = User.find_by(id: params["id"])
+        @students = @user.students
+        erb :'/users/show'
+    end 
 end 

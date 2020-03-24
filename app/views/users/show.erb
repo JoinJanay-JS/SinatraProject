@@ -1,16 +1,17 @@
 <body class="home-page-bkgd">
   <div class="home-page-container">
     <div class="text-center">
-    <h1>Add a new activity to <%= @students.name %></h1>
-    <h2><%=@student.activity %></h2>
-        <h6>Pick an Activity <a href="/activities/id"><%= @activity.name %></a></h6>
-        <p>Want to add a new file?</p>
-        <p>Click on the "Choose File" button to upload a file:</p>
-
-        <form action="/action_page.php">
-        <input type="file" id="myFile" name="filename">
-        <input type="submit">
-        </form>
+         
+       <h2>List All Students Created, <%= current_user.username %></h2>
+<ul>
+<% students.each do |s| %>
+ <h3><li>
+   <a href="/student/<%= s.id %>"><%= s.name %> ,<%= s.age %> </a> 
+ </li></h3>
+</ul>
+<% end %>
+<br><br>
+   
    </div>
   </div>
 </body>

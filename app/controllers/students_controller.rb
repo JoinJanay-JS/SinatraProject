@@ -10,6 +10,9 @@ class StudentsController < ApplicationController
       erb :"students/index"
     end
 
+  
+
+
     get '/student/:id' do 
       #binding.pry
       @student = Student.find_by(id: params[:id])
@@ -20,7 +23,6 @@ class StudentsController < ApplicationController
      # binding.pry
       @student = student.find_by_id(params[:id])
     # if current_user.id != @student.id
-    flash[:message] = "Successfully updated your Student!"
       erb :'/students/show'
   end 
     

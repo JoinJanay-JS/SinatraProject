@@ -7,7 +7,6 @@ end
 
 
 use Rack::MethodOverride
-use ActivitiesController
 use UsersController
 use SessionsController
 use StudentsController

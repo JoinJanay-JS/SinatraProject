@@ -1,9 +1,0 @@
-<h1>Activities</h1>
-
-  <% @activities.each do |a| %>
-    <h2><a href= "/activities/<%= @activities.id %>" ><%= @activities.title %> </a></h2>
-      <ul><%= @activity.supplies %></ul>
-        <p><%= @activity.instructions %></p>
-        
-      <img src="<%= @activity.image= %>" alt="activity">
-  <% end %>    
