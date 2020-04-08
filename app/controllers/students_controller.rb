@@ -5,13 +5,10 @@ class StudentsController < ApplicationController
     end
   
     post '/students' do
-      students = Student.new()
+      students = Student.new(params["student"])
       students.save
       erb :"students/index"
     end
-
-  
-
 
     get '/student/:id' do 
       #binding.pry

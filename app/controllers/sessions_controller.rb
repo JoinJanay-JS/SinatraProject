@@ -10,13 +10,12 @@ class SessionsController < ApplicationController
    if user && user.authenticate(params[:password])
      session[:user_id] = user.id
     # binding.pry
-     redirect to '/students'
+    redirect to "/users/#{@new_user.id}"
    else
        flash[:message] = "Your password is incorrect"
        redirect to '/login'
     end
   end
-end 
 
   get '/logout' do
     if is_logged_in?
@@ -27,4 +26,3 @@ end
     end
   end
 end
-end 

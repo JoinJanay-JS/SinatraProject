@@ -15,9 +15,3 @@ gem 'sinatra-flash', '~> 0.3.0'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'carrierwave'
 
-group :test do
-  gem 'rspec'
-  gem 'capybara'
-  gem 'rack-test'
-  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
-end

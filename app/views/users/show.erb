@@ -4,7 +4,7 @@
          
        <h2>List All Students Created, <%= current_user.username %></h2>
 <ul>
-<% students.each do |s| %>
+<% @current_user.students.each do |s| %> 
  <h3><li>
    <a href="/student/<%= s.id %>"><%= s.name %> ,<%= s.age %> </a> 
  </li></h3>

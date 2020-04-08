@@ -4,34 +4,36 @@ class UsersController < ApplicationController
     erb :'users/signup'
   end
 
-  post '/signup' do
-    user = User.all()
+  post '/users' do
+    #@user = User.all()
       new_user = User.create(username: params["username"], email: params["email"], password: params["password"]  )
+      if new_user.valid?
       session[:user_id] = new_user.id 
-      redirect '/users'  
-     if new_user = User.find_by(username: params["username"]) 
-      @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
-      erb :'users/signup'
-    end 
+      redirect to "/users/#{@new_user.id}"  
+    # if new_user = User.find_by(username: params["username"]) 
+    #  @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
+    #  erb :'users/login'
+   end 
   end 
 
-  get '/users' do 
-    erb :'/users/index'
+  get '/users/:id' do 
+    @new_user = User.find_by(id: params[:id])
+   erb :'/users/index'
   end
 
-  post '/users' do 
-    if student.create
+ # post '/users' do 
+   # if student.create
       #redirect to :'/users/show'
-    end 
-  end
+   # end 
+ # end
 
 get '/users/all_students' do 
   redirect to :'/students'
 end 
 
-    get '/users/:id/students' - 
-        @user = User.find_by(id: params["id"])
-        @students = @user.students
+    get '/users/:id/students' do 
+        @new_user = User.find_by(id: params["id"])
+        @students = @new_user.students
         erb :'/users/show'
     end 
-end 
+  end

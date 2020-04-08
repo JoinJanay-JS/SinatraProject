@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
     has_many :students
-   # has_many :activities, through: :students
     has_secure_password
-    validates :email, presence: true
-
+    validates :email, presence: true, uniqueness: true
   end

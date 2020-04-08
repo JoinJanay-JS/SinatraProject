@@ -4,11 +4,11 @@
       <h1>Welcome Sneaky Teachers</h1>
         <h6>Please create an account: <a href='/login'>(Already have an account? Log In Here)</a></h6>
           <p><%= @error %></p>
-          <form method="POST" action='/signup'>
+          <form method="POST" action="/users">
             <label><strong>Username: *</strong></label><br>
             <input type="text" name="username" required><br>
             <label><strong>Email: *</strong></label><br>
-            <input type="text" name="email" required><br>
+            <input type="email" name="email" required><br>
             <label><strong>Create a Password: *</strong></label><br>
             <input type="password" name="password" required><br>
             <br>
