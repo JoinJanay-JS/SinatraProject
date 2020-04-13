@@ -6,10 +6,10 @@ class UsersController < ApplicationController
 
   post '/users' do
     #@user = User.all()
-      new_user = User.create(username: params["username"], email: params["email"], password: params["password"]  )
-      if new_user.valid?
-      session[:user_id] = new_user.id 
-      redirect to "/users/#{@new_user.id}"  
+      user = User.create(username: params["username"], email: params["email"], password: params["password"]  )
+      if user.valid?
+      session[:user_id] = user.id 
+      redirect to '/users/#{@user.id}'
     # if new_user = User.find_by(username: params["username"]) 
     #  @error = "Whoopsie! It looks like you're already a Sneaky Teacher. Please enter a new email or log in to continue." 
     #  erb :'users/login'
@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   end 
 
   get '/users/:id' do 
-    @new_user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
+    @students = @user.students
    erb :'/users/index'
   end
 
@@ -27,13 +28,13 @@ class UsersController < ApplicationController
    # end 
  # end
 
-get '/users/all_students' do 
-  redirect to :'/students'
-end 
+  get '/users/all_students' do 
+    redirect to :'/students'
+  end 
 
     get '/users/:id/students' do 
-        @new_user = User.find_by(id: params["id"])
-        @students = @new_user.students
+        @user = User.find_by(id: params["id"])
+        @students = @user.students
         erb :'/users/show'
     end 
   end

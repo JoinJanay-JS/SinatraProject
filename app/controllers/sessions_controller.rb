@@ -5,11 +5,10 @@ class SessionsController < ApplicationController
   end
 
  post '/login' do
-   user = User.find_by(email: params["email"])
 
+   user = User.find_by(email: params["email"])
    if user && user.authenticate(params[:password])
      session[:user_id] = user.id
-    # binding.pry
     redirect to "/users/#{@new_user.id}"
    else
        flash[:message] = "Your password is incorrect"
