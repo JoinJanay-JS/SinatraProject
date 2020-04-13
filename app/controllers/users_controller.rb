@@ -17,8 +17,12 @@ class UsersController < ApplicationController
   end 
 
   get '/users/:id' do 
+    if user.is_logged_in? && User.find_by
     @user = User.find_by(id: params[:id])
     @students = @user.students
+    else
+      redirect to '/' 
+    end
    erb :'/users/index'
   end
 
