@@ -1,14 +1,19 @@
 class StudentsController < ApplicationController
 
     get '/students' do
+      @students = Student.all
       erb :"students/index"
     end
-  
+
     post '/students' do
       students = Student.new(params["student"])
       students.save
       erb :"students/index"
     end
+
+    get '/students/new' do
+      erb :"students/new"
+    end 
 
     get '/student/:id' do 
       #binding.pry
@@ -31,10 +36,7 @@ class StudentsController < ApplicationController
       flash[:message] = "Successfully updated your Student!"
         redirect to "/student/#{student.id}"
     end
-   
-
-    
-    
+  
   post '/student/:id/edit' do
     @student.update(name: params["name"], age: params["age"])
     flash[:message] = "Successfully updated your Student!"

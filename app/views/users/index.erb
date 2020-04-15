@@ -1,28 +1,12 @@
-<h1>Welcome Back, <%= current_user.username %>! Please Create Your Student</h1>
-<h2>Create a New Student</h2>
-<br><br>
-<form method="POST" action="/students">
-  <div class="form-group">
-  Name: *<br>
-  <input type="text" name="student[name]" value="" required>
-  <br>
-  Age: *<br>
-  <input type="text" name="student[age]" value="" required>
-  <br><br>
-  <input type="submit" value="Submit">
-</form> 
-<br><br>
-  <strong><u>Image (Add an Image for your student Here... )</u></strong>:<br>
-<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
-<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-<p><img id="output" width="200" /></p>
+<body class="home-page-bkgd">
+  <div class="home-page-container">
+    <div class="text-center">
 
-<script>
-var loadFile = function(event) {
-	var image = document.getElementById('output');
-	image.src = URL.createObjectURL(event.target.files[0]);
-};
-</script>
+      <h3>All Users</h3>
 
+      <% @users.each do |user| %>
+      <p> <a href="/users/<%=user.id%>"> <%= user.username.titleize %> </a></p>
+      <%end%>
+      </div>
   </div>
-</form>
+</body>

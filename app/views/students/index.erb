@@ -12,18 +12,19 @@
   </thead>
  
   <tbody>
-    <% @students.each do |student| %>
+    <% students.each do |student| %>
       <tr>
         <td><%= student.name %></td>
         <td><%= student.age %></td>
-        <td><%= link_to "Show", student %></td>
-        <td><%= link_to "Edit", edit_student_path(student) %></td>
-        <td><%= link_to "Destroy", student, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
+
+    <td><p class="links"><a href="/students/show">Individual Student</a></p></td>
+    <td><p class="links"><a href="/students/edit">Edit </a></p></td>
+    <td><p class="links"><a href="/students/delete">Delete</a></p></td>
   </tbody>
 </table>
  
 <br>
  
-<%= link_to "New Student", new_student_path %>
+<p class="links"><a href="/students/new">New Student</a></p>
