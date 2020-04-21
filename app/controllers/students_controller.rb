@@ -38,15 +38,16 @@ class StudentsController < ApplicationController
 
 
   get '/students/:id/edit' do
-    @student = student.find_by(id: params[:id])
-  if !is_logged_in? || !@student || @student.user != current_user
-    redirect '/'
-  end
+    @user = current_user
+    @student = Student.find_by(id: params[:id])
+    if @user.id != @student.user_id
+      redirect to "/students/#{@student.id}"
+    end 
   erb :'/students/edit'
 end
 
 patch '/students/:id' do
-  student = student.find_by(id: params[:id])
+  student = Student.find_by(id: params[:id])
   if student && student.user == current_user
     student.update(params[:student])
     redirect to "/students/#{student.id}"
@@ -56,7 +57,7 @@ patch '/students/:id' do
 end
 
 delete '/students/:id/delete' do
-  student = student.find_by(id: params[:id])
+  student = Student.find_by(id: params[:id])
   if student && student.user == current_user
     student.destroy
   end

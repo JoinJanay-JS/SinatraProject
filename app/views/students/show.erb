@@ -7,6 +7,10 @@
 
 <h3>Student ID: <%= @student.id %></h3>
 
+
+<p><%= @student.name %></p>
+<p><%= @student.age %></p>
+
 <% if current_user == @student.user %>
   <a href="/students/<%=@student.id%>/edit">Edit student</a>
   <form action="/students/<%=@student.id%>/delete" method="post">
@@ -15,12 +19,8 @@
   </form>
 <%end%>
 
-<p><%= @student.name %></p>
-<p><%= @student.age %></p>
-
-
-    <td><p class="links"><a href="/students/edit">Edit </a></p></td>
-    <td><p class="links"><a href="/students/delete">Delete</a></p></td>
+    <td><p class="links"><a href="/students/:id/edit">Edit </a></p></td>
+   <td><p class="links"><a href="/students/delete">Delete</a></p></td>
 
 <br><br>
    
