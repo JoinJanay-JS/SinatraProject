@@ -12,16 +12,12 @@
   </thead>
  
   <tbody>
-    <% students.each do |student| %>
+    <% @students.each do |student| %>
       <tr>
-        <td><%= student.name %></td>
+        <td><li><a href="/students/<%=student.id %>"><%=student.name %></a></li></td>
         <td><%= student.age %></td>
       </tr>
     <% end %>
-
-    <td><p class="links"><a href="/students/show">Individual Student</a></p></td>
-    <td><p class="links"><a href="/students/edit">Edit </a></p></td>
-    <td><p class="links"><a href="/students/delete">Delete</a></p></td>
   </tbody>
 </table>
  

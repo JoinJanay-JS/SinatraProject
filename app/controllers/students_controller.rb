@@ -1,24 +1,29 @@
 class StudentsController < ApplicationController
 
     get '/students' do
+      user = User.create(username: params["username"], email: params["email"], password: params["password"]  )
       @students = Student.all
       erb :"students/index"
     end
 
+    get '/students/new' do
+      if !is_logged_in?
+        redirect '/'
+      end
+    erb :'students/new'
+  end 
+
     post '/students' do
+      user = current_user
+      if user.valid?
+      session[:user_id] = user.id 
+      end
       students = Student.new(params["student"])
       students.save
       redirect to "/users/#{user.id}"
     end
 
-    get '/students/new' do
-        if !is_logged_in?
-          redirect '/'
-        end
-      erb :'students/new'
-    end 
-
-    get '/student/:id' do 
+    get '/students/:id' do 
       #binding.pry
       if !is_logged_in?
         redirect '/'  
@@ -30,34 +35,6 @@ class StudentsController < ApplicationController
      erb :'students/show'
     end 
 
-    #get '/student/:id/edit' do
-     # binding.pry
-   #student = Student.find_by_id(params[:id])
-    # if current_user.id != @student.id
-    #  erb :'/students/edit'
- # end 
-    
-     # patch '/student/:id' do 
-      #  @student = student.find_by_id(params[:id])
-      #  @student.name = params[:name]
-      #  @student.age = params[:age]
-      #  @student.save
-     # flash[:message] = "Successfully updated your Student!"
-     #   redirect to "/student/#{student.id}"
-   # end
-  
- # post '/student/:id/edit' do
- #   @student.update(name: params["name"], age: params["age"])
- #   flash[:message] = "Successfully updated your Student!"
-   #   erb :'/students/show'
- # end 
-
-  #  delete '/student/:id/delete' do
-   #   student.destroy
-    #  flash[:message] = "Your student has been deleted"
-    #  redirect to '/students'
-   # end
- # end
 
 
   get '/students/:id/edit' do

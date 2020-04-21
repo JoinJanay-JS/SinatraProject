@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20200117020133) do
 
-  create_table "activities", force: :cascade do |t|
-    t.string "title"
-    t.string "image"
-    t.string "supplies"
-    t.text   "instructions"
-    t.string "tags"
-  end
-
   create_table "students", force: :cascade do |t|
     t.integer "user_id"
     t.integer "activity_id"

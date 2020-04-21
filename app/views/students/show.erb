@@ -1,0 +1,29 @@
+<body class="home-page-bkgd">
+  <div class="home-page-container">
+    <div class="text-center">
+         
+       <h2>List All Students Created, <%= current_user.username %></h2>
+<ul>
+
+<h3>Student ID: <%= @student.id %></h3>
+
+<% if current_user == @student.user %>
+  <a href="/students/<%=@student.id%>/edit">Edit student</a>
+  <form action="/students/<%=@student.id%>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+<%end%>
+
+<p><%= @student.name %></p>
+<p><%= @student.age %></p>
+
+
+    <td><p class="links"><a href="/students/edit">Edit </a></p></td>
+    <td><p class="links"><a href="/students/delete">Delete</a></p></td>
+
+<br><br>
+   
+   </div>
+  </div>
+</body>

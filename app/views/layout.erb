@@ -17,7 +17,7 @@
     <div class="wrapper"> 
     <% if is_logged_in? %>
       <p class="links"><a href="/logout" class="logout">Log Out</a></p> 
-      <p class="links"><a href="/users/<%= current_user.id if is_logged_in? %>/students">My Students</a></p>
+      <p class="links"><a href="/users/<%= current_user.id if is_logged_in? %>">My Students</a></p>
       <p class="links"><a href="/students/new">New Student</a></p> 
       <p class="links"><a href="/students">All Students</a></p> 
       <p class="links"><a href="/users">All Users</a></p>

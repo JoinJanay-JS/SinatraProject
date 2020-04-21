@@ -10,9 +10,6 @@ class ApplicationController < Sinatra::Base
   set :public_folder, "public"
 
   get '/' do
-    if is_logged_in?
-      redirect to "/users/#{user.id}"
-    end 
    erb :welcome
   end
 
