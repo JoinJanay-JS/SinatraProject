@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   get '/users/:id' do 
     user = User.create(username: params["username"], email: params["email"], password: params["password"]  )
     if is_logged_in? && User.find_by(id: params[:id])
+    
     @user = User.find_by(id: params[:id])
     @students = @user.students
     else
