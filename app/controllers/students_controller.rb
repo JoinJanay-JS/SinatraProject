@@ -33,13 +33,10 @@ class StudentsController < ApplicationController
      erb :'students/show'
     end 
 
-
-
   get '/students/:id/edit' do
-    @user = current_user
-    @student = Student.find_by(user_id: params[:user_id])
-    if @user.id != @student
-      redirect to "/students/#{@student.id}"
+    @student = Student.find_by(id: params[:id])
+    if !is_logged_in? || !@student || @student.user != current_user
+      redirect to "/students"
     end 
   erb :'/students/edit2'
 end

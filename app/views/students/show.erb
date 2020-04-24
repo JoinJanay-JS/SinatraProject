@@ -10,20 +10,19 @@
 
 <p><%= @student.name %></p>
 <p><%= @student.age %></p>
+<p><%= @student.favorite_subject %></p>
 
 <% if current_user == @student.user %>
-  <a href="/students/<%=@student.id%>/edit">Edit student</a>
+  
+ <form action="/students/<%=@student.id%>/edit" method="patch">
+    <input type="hidden" name="_method" value="edit">
+    <input type="submit" value="Edit">
+
   <form action="/students/<%=@student.id%>/delete" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
   </form>
-<%end%>
-
-    <td><p class="links"><a href="/students/:id/edit">Edit </a></p></td>
-   <td><p class="links"><a href="/students/delete">Delete</a></p></td>
-
-<br><br>
-   
+<%end%>   
    </div>
   </div>
 </body>

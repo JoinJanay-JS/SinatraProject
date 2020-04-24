@@ -3,14 +3,11 @@
     <div class="text-center">
          
        <h2>List All Students Created, <%= current_user.username %></h2>
-<ul>
-<% @students.each do |s| %> 
- <h3><li>
-   <a href="/student/<%= s.id %>"><%= s.name %> ,<%= s.age %> </a> 
- </li></h3>
-</ul>
-<% end %>
-   
+  <ul>
+    <% @students.each do |s| %> 
+      <li><a href="/students/<%= s.id %>"><%= s.name %> ,<%= s.age %> ,<%= s.favorite_subject %> </a> </li>
+    <% end %>
+   </ul>
    </div>
   </div>
 </body>
