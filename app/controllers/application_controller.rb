@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
     end 
 
     def student 
-     student= Student.find_by(params[:id], session[:user_id]) 
+     @student= Student.find_by_id(params[:id]) 
     end
   end
 end 

@@ -1,7 +1,6 @@
 class StudentsController < ApplicationController
 
     get '/students' do
-      user = User.create(username: params["username"], email: params["email"], password: params["password"]  )
       @students = Student.all
       erb :"students/index"
     end
@@ -16,8 +15,12 @@ class StudentsController < ApplicationController
     post '/students' do
       user = current_user
       students = Student.new(params["student"])
+      if students.name.empty? || students.age.empty? || students.favorite_subject.empty? 
+        redirect to 'students/new'
+      end
       students.user_id = current_user.id 
       students.save
+      
       redirect to "/users/#{user.id}"
     end
 
